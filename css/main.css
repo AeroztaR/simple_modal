@@ -23,8 +23,11 @@ body {font: 17px/1.6 Arial, Helvetica, sans-serif;}
 }
 
 .modal-content {
+    position: relative;
     background: rgb(28, 214, 59);
-    margin: 12% auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 20px;
     width: 50%;
     box-shadow: 0 5px 8px 0 rgba(128, 0, 0, 0.507);
@@ -37,9 +40,11 @@ body {font: 17px/1.6 Arial, Helvetica, sans-serif;}
 }
 
 .closeBtn {
+    position: absolute;
+    right: .5rem;
+    top: -.5rem;
     color: rgb(241, 243, 247); 
-    float: right;
-    font-size: 30px;
+    font-size: 2rem;
 }
 
 .closeBtn:hover, .closeBtn:focus {

@@ -1,26 +1,35 @@
-'use strict';
+const modals = () => {
+    function bindModal(triggerSelector, modalSelector, closeSelector) {
+        const trigger = document.querySelectorAll(triggerSelector);
+        const modal = document.querySelector(modalSelector); 
+        const close = document.querySelector(closeSelector);
 
-let doc = document,
-    modal = doc.getElementById('justModal'),
-    modalBtn = doc.getElementById('modalBtn'),
-    closeBtn = doc.querySelector('.closeBtn');
+        trigger.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+        
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+    
+        close.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
 
-modalBtn.addEventListener('click', openModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
 
-function openModal(){
-    modal.style.display = 'block';
+    
+    bindModal('.modalBtn', '.modal', '.closeBtn');
 };
 
-closeBtn.addEventListener('click', closeModal);
-
-function closeModal (){
-    modal.style.display = 'none';
-}
-
-window.addEventListener('click', outsideCloseModal);
-
-function outsideCloseModal(e){
-    if(e.target == modal){
-        modal.style.display = 'none';
-    }
-}
+window.addEventListener('DOMContentLoaded', () => {
+    modals();
+});
